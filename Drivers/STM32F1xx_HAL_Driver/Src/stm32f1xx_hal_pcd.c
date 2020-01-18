@@ -1629,7 +1629,6 @@ HAL_StatusTypeDef HAL_PCD_EP_Receive(PCD_HandleTypeDef *hpcd, uint8_t ep_addr, u
   /*setup and start the Xfer */
   ep->xfer_buff = pBuf;
   ep->xfer_len = len;
-  ep->xfer_count = 0U;
   ep->is_in = 0U;
   ep->num = ep_addr & EP_ADDR_MSK;
 
@@ -2150,6 +2149,7 @@ static HAL_StatusTypeDef PCD_EP_ISR_Handler(PCD_HandleTypeDef *hpcd)
 #else
           HAL_PCD_DataOutStageCallback(hpcd, ep->num);
 #endif /* USE_HAL_PCD_REGISTER_CALLBACKS */
+          ep->xfer_count = 0;
         }
         else
         {
