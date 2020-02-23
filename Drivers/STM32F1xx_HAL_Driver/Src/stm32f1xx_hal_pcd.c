@@ -2153,7 +2153,8 @@ static HAL_StatusTypeDef PCD_EP_ISR_Handler(PCD_HandleTypeDef *hpcd)
         }
         else
         {
-          (void)HAL_PCD_EP_Receive(hpcd, ep->num, ep->xfer_buff, ep->xfer_len);
+          //(void)HAL_PCD_EP_Receive(hpcd, ep->num, ep->xfer_buff, ep->xfer_len);
+		  (void)USB_EPStartXfer(hpcd->Instance, ep);
         }
 
       } /* if((wEPVal & EP_CTR_RX) */
